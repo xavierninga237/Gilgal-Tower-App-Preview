@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
   --shell-pad: clamp(1.25rem, 5vw, 4rem);
 }
 
