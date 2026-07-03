@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --shell-pad: clamp(1.25rem, 5vw, 4rem);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #1d1d1f;
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: #4B1D7A;
+    color: #fff;
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--shell-pad);
+  }
+
+  .eyebrow {
+    font-family: var(--font-body), sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #4B1D7A;
+  }
+
+  .eyebrow-gold {
+    color: #B79A23;
+  }
+
+  .gold-rule {
+    height: 3px;
+    width: 44px;
+    border-radius: 9999px;
+    background: #B79A23;
+  }
+
+  /* Pill buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.8rem 1.5rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease,
+      color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  /* Primary = royal purple */
+  .btn-primary {
+    background: #4B1D7A;
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: #3a1660;
+    box-shadow: 0 10px 24px -12px rgba(75, 29, 122, 0.6);
+  }
+
+  /* White pill, used on dark hero imagery */
+  .btn-white {
+    background: #ffffff;
+    color: #4B1D7A;
+  }
+  .btn-white:hover {
+    background: #f1f1f6;
+    box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Secondary = gold */
+  .btn-gold {
+    background: #B79A23;
+    color: #101010;
+  }
+  .btn-gold:hover {
+    background: #8f7818;
+    box-shadow: 0 10px 24px -12px rgba(183, 154, 35, 0.6);
+  }
+
+  .btn-blue {
+    background: #1E5EA8;
+    color: #fff;
+  }
+  .btn-blue:hover {
+    background: #174c87;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: inherit;
+    border: 1px solid #d4d4dd;
+  }
+  .btn-outline:hover {
+    background: rgba(75, 29, 122, 0.06);
+    border-color: #4B1D7A;
+    color: #4B1D7A;
+  }
+
+  .btn-ghost-dark {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .btn-ghost-dark:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.4rem;
+    border: 1px solid #d8d8e0;
+    background: #fff;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    color: #1d1d1f;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .field:focus {
+    outline: none;
+    border-color: #4B1D7A;
+    box-shadow: 0 0 0 3px rgba(75, 29, 122, 0.15);
+  }
+
+  .card-lift {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 48px -22px rgba(20, 20, 45, 0.28);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Continuous marquee for the gallery strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+  will-change: transform;
+}
+.marquee-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+}
